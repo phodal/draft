@@ -49,3 +49,9 @@ stateParams:undefined
     $ionicHistory.currentView(currentView);
   });
 ```
+
+----
+
+https://github.com/ionic-team/ionic/issues/2802
+
+
