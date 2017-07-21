@@ -37,6 +37,8 @@ Growth 是一款专注于Web开发者成长的应用。其 1.0 和 2.0 主要使
 
 PostMessage
 
+官方的 issue 比 google 好用
+
 版本间差异太大，导致下游配套
 ---
 
