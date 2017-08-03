@@ -110,3 +110,65 @@ RCT_EXPORT_METHOD(isLogined:(RCTPromiseResolveBlock)resolve
     resolve(@[[NSNull null], @{@"isLogined": @(isLogin)}]);
 }
 ```
+
+为了往 JS 中发送代码
+
+js 代码端
+
+
+```
+    webviewOnLoad = () => {
+      if(Platform.OS === 'android') {
+        DeviceEventEmitter.addListener('NATIVE_INVOKE', this.handleNativeInvoke);
+      } else {
+        var RCTZhaohu = new NativeEventEmitter(NativeModules.SDK);
+        RCTSDK.addListener('NATIVE_INVOKE', this.handleNativeInvoke)
+      }
+    }
+```      
+
+原生代码:
+
+头文件：
+
+```
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+
+
+@interface SDK : RCTEventEmitter <RCTBridgeModule>
+
+@end
+```
+
+代码文件：
+
+```
+#import <React/RCTBridge.h>
+
+@implementation SDK
+
+@synthesize bridge = _bridge;
+
+- (NSArray<NSString *> *) supportedEvents
+{
+    return @[@"SDK_EVENT"];
+}
+
+RCT_EXPORT_MODULE();
+
+
+- (void)pushEvent:(NSString *)formatString eventName:(NSString *)eventName JSONObject:(id)JSONObject {
+    NSData* JSONObjectData = [NSJSONSerialization dataWithJSONObject:[JSONObject copy]
+                                                             options:NSJSONWritingPrettyPrinted
+                                                               error:nil];
+    NSString* JSONObjectString = [[NSString alloc] initWithData:JSONObjectData
+                                                       encoding:NSUTF8StringEncoding];
+    NSString* javascript = [NSString stringWithFormat:formatString, eventName, JSONObjectString];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self sendEventWithName:@"SDK_EVENT" body: @{@"injectedJS": javascript}];
+    });
+}
+
+@end
+```
