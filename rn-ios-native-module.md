@@ -61,22 +61,10 @@ Android 示例
 
 ```
 @ReactMethod
-public void login(int userid, String password, Promise promise) {
-    try {
-        sdkLogin(userid, _signature);
-        promise.resolve(SUCCEED_INFO);
-    } catch (Exception e) {
-        Log.e(TAG, e.getMessage(), e);
-        promise.reject(e);
-    }
-}
-
-@ReactMethod
 public void isLogined(Promise promise) {
     try {
         promise.resolve(SDK.app().is_logined());
     } catch (Exception e) {
-        Log.e(TAG, e.getMessage(), e);
         promise.reject(e);
     }
 }
@@ -107,7 +95,32 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(isLogined:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     BOOL isLogin = [[SDKHelper sharedHelper] isLogin];
-    resolve(@[[NSNull null], @{@"isLogined": @(isLogin)}]);
+    resolve(@{@"isLogined": @(isLogin)});
+}
+```
+
+对于需要使用参数的例子则是：
+
+
+```
+RCT_EXPORT_METHOD(login:(int64_t)userID
+                  password:(NSString *) password
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+
+    [[SDKHelper sharedHelper] login:userID password:password];
+    
+    resolve(@"true");
+}
+```
+
+Android 代码 ：
+
+
+```
+@ReactMethod
+public void login(int userid, String signature, Promise promise) {
+    
 }
 ```
 
