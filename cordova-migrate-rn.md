@@ -143,15 +143,22 @@ DatePickerHandler.showDatePicker = (payload, webView) => {
 第三方封装的 TabBar 都会绑定 View，所以只能自己去实现
 
 ```
-<TabBar>
-    <TabBar.Item
-        ...
-        onPress={() => {
+<View style={{flex: isLoadingVisible ? 0 : 1, paddingBottom: 49}}>
+  <WebView
+    ...
+  />
+</View>
+<View>
+    <TabBar>
+        <TabBar.Item
+            ...
+            onPress={() => {
 
-        }}
-        title='首页'>
-    </TabBar.Item>
-</TabBar>
+            }}
+            title='首页'>
+        </TabBar.Item>
+    </TabBar>
+</View>
 ```
 
 RN 返回 WebView
