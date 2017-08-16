@@ -136,3 +136,33 @@ DatePickerHandler.showDatePicker = (payload, webView) => {
 
 ### 没有 UI 和 React Tag
 
+
+处理 Tabbar
+---
+
+RN 返回 WebView
+---
+
+```
+window.postMessage(JSON.stringify({
+  action: 'RN_BACK'
+}));
+```
+
+```
+RNBackHandler.handleRNBack = () => {
+  Actions.pop();
+};
+```
+
+WebView 打开 RN
+
+```
+let js = 'var event = new CustomEvent("' + action + '", {detail: ' + JSON.stringify(detail) + '});';
+js += 'window.document.dispatchEvent(event);';
+webView.injectJavaScript(js);
+```
+
+
+
+
