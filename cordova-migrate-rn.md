@@ -16,6 +16,19 @@ if (__DEV__) {
 }
 ```
 
+WebView 的生命周期：
+
+```
+onNavigationStateChange={this.onNavigationStateChange}
+onMessage={this.handleMessage}
+onLoad={this.onWebviewLoad}
+onLoadStart={this.onWebviewLoadStart}
+```
+
+跨域问题：
+
+
+
 WebView复制：
 
 ```
