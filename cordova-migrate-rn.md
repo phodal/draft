@@ -4,12 +4,59 @@ Cordova 演进到 React Native
 Cordova + Ionic + React Native
 
 
+处理 WebView
+---
+
+```
+let source;
+if (__DEV__) {
+  source = require(`./www/index.html`);
+} else {
+  source = Platform.OS === 'ios' ? require(`./www/index.html`) : { uri: `file:///android_asset/www/index.html#${baseUrl}` };
+}
+```
+
+WebView复制：
+
+```
+rm -rf ios/assets/src/components/ui/www
+mkdir -p ios/assets/src/components/ui/www
+cp -a src/components/ui/www ios/assets/src/components/ui/
+```
+
 处理 Cordova 插件
 ---
 
-### 集成原生插件
+WebView <-> React Native <-> Native
 
-### 没有 UI 和 React Tag
+RN: injectJavaScript/PostMessage
+WebView: PostMessage
+Native: RCTBridge
+RN:
+
+原始的 Cordova Native 和 WebView 的通访方式 
+
+```
+let js = 'var event = new CustomEvent("' + action + '", {detail: ' + JSON.stringify(detail) + '});';
+js += 'window.document.dispatchEvent(event);';
+webView.injectJavaScript(js);
+```    
+
+```
+dispatch_async(dispatch_get_main_queue(), ^{
+    [self sendEventWithName:@"NATIVE_INVOKE" body: @{@"injectedJS": javascript}];
+});
+```    
+
+```
+private void executeJS(String injectedJS) {
+    WritableMap params = Arguments.createMap();
+    params.putString("injectedJS", injectedJS);
+    sendEvent(Zhaohu.getInstance().getReactContext(), NATIVE_INVOKE, params);
+}
+```    
+
+### 集成原生插件
 
 最麻烦的部分是 Cordova 插件
 
@@ -86,4 +133,6 @@ DatePickerHandler.showDatePicker = (payload, webView) => {
   }, webView);
 };
 ```
+
+### 没有 UI 和 React Tag
 
