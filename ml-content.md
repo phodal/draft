@@ -74,12 +74,23 @@
 ---
 
 
+技术实现原型
+---
+
+ - hitcounts
+ - rating
+ 
+ 
+django + celery + redis 调度/定期/afterpost ?
+
+ajax 生成
+
 
 参考内容：
 
  - 《驾驭文本》
  - 《推荐系统》
  - 《机器学习实战》
- 
+
 文章：[http://www.cnblogs.com/breezedeus/archive/2012/04/10/2440488.html](http://www.cnblogs.com/breezedeus/archive/2012/04/10/2440488.html)
 
