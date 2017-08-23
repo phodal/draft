@@ -4,6 +4,34 @@
  - 基于内容（Item）：内容之间的相似度
  - 协同过滤（User）：用户之间的相似度
 
+基于文章标签过滤
+---
+
+1. 获取文章的所有标签
+2. 对所有文章的标签进行统计，计数
+3. 获取文章标签中计数最多的 tag，查找相同标签的博客
+4. 在剩余的博客中，选择第二多 tag，再过滤剩余的博客
+
+```
+keywords_name = model.get_keywordsfield_name()
+assigned = getattr(model, keywords_name).all()
+all_keywords = Keyword.objects.filter(assignments__in=assigned)
+keywords = all_keywords.annotate(item_count=Count("assignments")).order_by('-item_count')
+
+# TODO: filter most popular tag
+first_keyword = keywords.first()
+if first_keyword:
+    first_filtered_blogposts = BlogPost.objects.published().filter(keywords__keyword__title__contains=first_keyword.title)
+    first_filtered_blogposts = first_filtered_blogposts.filter(~Q(id=post_id))
+    second_keyword = keywords[1]
+
+    if second_keyword:
+        blog_posts = first_filtered_blogposts.filter(keywords__keyword__title__contains=second_keyword.title)
+        return blog_posts[:3]
+    else:
+        return []
+```                
+
 基于统计学推荐
 ---
 
