@@ -51,7 +51,9 @@ if first_keyword:
 3. Recommendation Generation：通过比较上一步得到的用户profile与候选item的特征，为此用户推荐一组相关性最大的item。
 
 步骤一：文章的标签
+
 步骤二：用户行为 
+
 步骤三：分析用户可能性
 
 ### 特征提取
