@@ -77,6 +77,10 @@ if first_keyword:
 
 中文库：[https://github.com/letiantian/TextRank4ZH](https://github.com/letiantian/TextRank4ZH)
 
+Content Engine: https://github.com/groveco/content-engine
+
+User Filtering: https://github.com/fcurella/django-recommends
+
 **LDA**
 
 > 隐含狄利克雷分布简称LDA(Latent Dirichlet allocation)，是一种主题模型，它可以将文档集中每篇文档的主题按照概率分布的形式给出。
