@@ -38,6 +38,15 @@ if first_keyword:
  - 博客的访问量
  - 用户的点评数据
 
+https://www.biaodianfu.com/imdb-rank.html
+
+贝叶斯统计的算法得出的加权分(Weighted Rank-WR)，公式如下：
+
+ WR， 加权得分（weighted rating）。
+ R，该电影的用户投票的平均得分（Rating）。
+ v，该电影的投票人数（votes）。
+ m，排名前 250 名的电影的最低投票数（现在为 3000）。
+ C， 所有电影的平均得分（现在为6.9）。
 
 协同过滤
 ---
