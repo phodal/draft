@@ -84,6 +84,12 @@ def confidence(ups, downs):
     return ((phat + z*z/(2*n) - z * sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n))
 ```
 
+
+相关性搜索
+---
+
+用户搜索 Raspberry Pi，那么它可能还会结合 Arduino ??
+
 基于统计学推荐
 ---
 
