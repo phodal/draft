@@ -6,20 +6,6 @@
  - 协同过滤（User）：用户之间的相似度
 
 
-权重分析
----
-
-基于 Google Search Console 的关键词权重，比如
-
-Queries | Clicks | Impressions | CTR | Position
---------|--------|------------|------|------
-homebridge-miio | 7 | 28 | 25% | 8.2
-home assistant broadlink | 4 | 10 | 40% | 15
-amazon echo raspberry pi | 3 | 10 | 30% | 5.0
-raspberry pi homebridge | 2 | 6 | 33.33% | 7.7
-raspberry pi alexa gpio | 2 | 4 | 50% | 10
-nodemcu homekit | 2 | 3 | 66.67% | 13
-arduino homekit | 1 | 3 | 33.33% | 9.7
 
 基于文章标签过滤
 ---
@@ -78,6 +64,31 @@ def confidence(ups, downs):
     return ((phat + z*z/(2*n) - z * sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n))
 ```
 
+
+权重分析
+---
+
+单一的关键词，只对于网站本身是有价值的，对于用户来说，则不是如此。
+
+基于 Google Search Console 的关键词权重，比如
+
+Queries | Clicks | Impressions | CTR | Position
+--------|--------|------------|------|------
+homebridge-miio | 7 | 28 | 25% | 8.2
+home assistant broadlink | 4 | 10 | 40% | 15
+amazon echo raspberry pi | 3 | 10 | 30% | 5.0
+raspberry pi homebridge | 2 | 6 | 33.33% | 7.7
+raspberry pi alexa gpio | 2 | 4 | 50% | 10
+nodemcu homekit | 2 | 3 | 66.67% | 13
+arduino homekit | 1 | 3 | 33.33% | 9.7
+
+这也就是上面算法中的问题，假如我们的文章中，出现一系列的 home assistant、raspberry pi 相关的文章，那么它对于网站来说，表明它是没有价值的。
+
+并且如果同一系列的文章太多，如网上各类的 Vue 高仿站点，那么用户可能已经掌握了，或者没有价值。因此，它并不能在搜索结果上体现，
+
+在站点内，它有重要的意义，标签数量多。但是它并不能真正地解决用户的问题？也不能真正地体现出网站的价值。
+
+假如用户搜索了一篇 raspberry pi + homebridge 的文章，那么它确实可以阅读一些相关的文章，而诸如 raspberry pi alexa gpio 从上图来看似乎是一个用户更加喜欢的选择。
 
 相关性搜索
 ---
