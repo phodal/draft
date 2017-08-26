@@ -170,3 +170,66 @@ INFO:snowboy:Keyword 1 detected at time: 2017-08-26 15:10:59
 https://snowboy.kitt.ai/hotword/351
 ```
 
+
+--------------------------------------
+
+ - Kaldi
+ - HTK
+ - [Lucida](https://github.com/claritylab/lucida)
+
+[https://my.oschina.net/jamesju/blog/116151](https://my.oschina.net/jamesju/blog/116151)
+
+A：创建语料库，brightness, channel,color各录制5次。
+B：声学分析，把wavform的声音文件转换为mfcc格式。
+C：模型定义，为词典里面的每一个词建立一个HMM原型。
+D：模型训练，HMM模型初始化和迭代。
+E：问题定义，即语法定义。
+F：对测试结合进行识别
+G：评测  
+
+当然，如果主要是用神经网络来做识别的话，还有TensorFlow、CNTK、Theano、Torch等都是可以的，我也曾经使用过 CMU Yajie Miao 开发的 PDNN 和 KaldiPDNN（网址：yajiemiao (Yajie Miao)）。
+
+```
+pi@raspberrypi:~/kaldi-master/tools $ make
+```
+
+Software packages required
+---
+
+The following is a non-exhaustive list of some of the packages you need in order to install Kaldi. The full list is not important since the installation scripts will tell you what you are missing.
+
+Git: this is needed to download Kaldi and other software that it depends on.
+wget is required for the installation of some non-Kaldi components described below
+The example scripts require standard UNIX utilities such as bash, perl, awk, grep, and make.
+It can also be helpful if you have an ATLAS linear-algebra package installed on your system. Most systems already have this (You can also search the packages in linux for installation by simple commands like "yum search atlas" or "apt-cache search libatlas"); the best approach is to ignore this requirement for now and see if you have problems when you install Kaldi.
+```
+
+
+Software packages installed by Kaldi
+---
+
+OpenFst: we compile against this and use it heavily.
+IRSTLM: this a language modeling toolkit. Some of the example scripts require it but it is not tightly integrated with Kaldi; we can convert any Arpa format language model to an FST.
+The IRSTLM build process requires automake, aclocal, and libtoolize (the corresponding packages are automake and libtool).
+Note: some of the example scripts now use SRILM; we make it easy to install that, although you still have to register online to download it.
+SRILM: some of the example scripts use this. It's generally a better and more complete language modeling toolkit than IRSTLM; the only drawback is the license, which is not free for commercial use. You have to enter your name on the download page to download it, so the installation script requires some human interaction.
+sph2pipe: this is for converting sph format files into other formats such as wav. It's needed for the example scripts that use LDC data.
+sclite: this is for scoring and is not necessary as we have our own, simple scoring program (compute-wer.cc).
+ATLAS, the linear algebra library. This is only needed for the headers; in typical setups we expect that ATLAS will be on your system. However, if it not already on your system you can compile ATLAS as long as your machine does not have CPU throttling enabled.
+CLAPACK, the linear algebra library (we download the headers). This is useful only on systems where you don't have ATLAS and are instead compiling with CLAPACK.
+OpenBLAS: this is an alernative to ATLAS or CLAPACK. The scripts don't use it by default but we provide installation scripts so you can install it if you want to compare it against ATLAS (it's more actively maintained than ATLAS).
+
+
+```
+extras/check_dependencies.sh
+extras/check_dependencies.sh: all OK.
+wget -T 10 -t 3 http://www.openslr.org/resources/3/sph2pipe_v2.5.tar.gz || \
+wget --no-check-certificate -T 10  https://sourceforge.net/projects/kaldi/files/sph2pipe_v2.5.tar.gz
+--2017-08-26 15:36:42--  http://www.openslr.org/resources/3/sph2pipe_v2.5.tar.gz
+Resolving www.openslr.org (www.openslr.org)... 35.184.122.207
+Connecting to www.openslr.org (www.openslr.org)|35.184.122.207|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 329832 (322K) [application/x-gzip]
+Saving to: ‘sph2pipe_v2.5.tar.gz’
+```
+
