@@ -263,3 +263,24 @@ https://www.bitpi.co/2015/02/11/how-to-change-raspberry-pis-swapfile-size-on-ras
 
 https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Mandarin/
 
+pocketsphinx_continuous -hmm zh_broadcastnews_ptm256_8000/ -lm zh_broadcastnews_64000_utf8.DMP -dict zh_broadcastnews_utf8.dic
+
+
+TTS
+---
+
+[http://blog.csdn.net/AMDS123/article/details/73825409](http://blog.csdn.net/AMDS123/article/details/73825409)
+
+```
+sudo apt-get install libespeak-dev libsndfile1-dev libpulse-dev libncurses5-dev libestools-dev festival-dev libvorbis-dev libmp3lame-dev libdotconf-dev texinfo
+```
+
+```
+./configure
+make
+sudo make install
+```
+
+```
+ekho '你好'
+```
