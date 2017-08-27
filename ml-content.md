@@ -90,6 +90,13 @@ arduino homekit | 1 | 3 | 33.33% | 9.7
 
 假如用户搜索了一篇 raspberry pi + homebridge 的文章，那么它确实可以阅读一些相关的文章，而诸如 raspberry pi alexa gpio 从上图来看似乎是一个用户更加喜欢的选择。
 
+示例：http://localhost:8000/play/howto-install-home-assistant-in-raspberry-pi/
+
+这个时候由编辑推荐出来的，反而比较准确。
+
+ - 权重
+ - 加权计算法
+
 相关性搜索
 ---
 

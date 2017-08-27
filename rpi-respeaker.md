@@ -253,6 +253,12 @@ pi@raspberrypi:~ $ cat /proc/asound/cards
 
 https://wolfpaulus.com/embedded/raspberrypi2-sr/
 
+交换空间的问题
+
+https://www.bitpi.co/2015/02/11/how-to-change-raspberry-pis-swapfile-size-on-rasbian/
+
+
+
 中文模型
 
 https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Mandarin/
