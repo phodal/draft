@@ -233,3 +233,27 @@ Length: 329832 (322K) [application/x-gzip]
 Saving to: ‘sph2pipe_v2.5.tar.gz’
 ```
 
+Sphinx
+---
+
+https://cmusphinx.github.io/wiki/raspberrypi/
+
+
+https://howchoo.com/g/ztbhyzfknze/how-to-install-pocketsphinx-on-a-raspberry-pi#download-the-latest-version-of-sphinxbase-and-pocketsphinx
+
+```
+pi@raspberrypi:~ $ cat /proc/asound/cards
+ 0 [ALSA           ]: bcm2835 - bcm2835 ALSA
+                      bcm2835 ALSA
+ 1 [UAC20          ]: USB-Audio - ReSpeaker MicArray UAC2.0
+                      SeeedStudio ReSpeaker MicArray UAC2.0 at usb-3f980000.usb-1.5, full speed
+ 2 [Device         ]: USB-Audio - USB PnP Sound Device
+                      C-Media Electronics Inc. USB PnP Sound Device at usb-3f980000.usb-1.2, full spe
+```
+
+https://wolfpaulus.com/embedded/raspberrypi2-sr/
+
+中文模型
+
+https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Mandarin/
+
