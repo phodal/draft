@@ -259,12 +259,17 @@ https://www.bitpi.co/2015/02/11/how-to-change-raspberry-pis-swapfile-size-on-ras
 
 
 
-中文模型
+### 中文模型
 
 https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/Mandarin/
 
 pocketsphinx_continuous -hmm zh_broadcastnews_ptm256_8000/ -lm zh_broadcastnews_64000_utf8.DMP -dict zh_broadcastnews_utf8.dic
 
+[PocketSphinx语音识别系统语言模型的训练和声学模型的改进](http://blog.csdn.net/zouxy09/article/details/7949126) 
+
+http://www.speech.cs.cmu.edu/tools/lmtool-new.html
+
+http://www.speech.cs.cmu.edu/SLM/toolkit_documentation.html
 
 TTS
 ---
