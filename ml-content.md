@@ -182,6 +182,7 @@ User Filtering: https://github.com/fcurella/django-recommends
 ### 生成推荐
 
 
+http://blog.untrod.com/2016/06/simple-similar-products-recommendation-engine-in-python.html
 
 协同过滤
 ---
