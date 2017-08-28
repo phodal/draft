@@ -202,22 +202,21 @@ Git: this is needed to download Kaldi and other software that it depends on.
 wget is required for the installation of some non-Kaldi components described below
 The example scripts require standard UNIX utilities such as bash, perl, awk, grep, and make.
 It can also be helpful if you have an ATLAS linear-algebra package installed on your system. Most systems already have this (You can also search the packages in linux for installation by simple commands like "yum search atlas" or "apt-cache search libatlas"); the best approach is to ignore this requirement for now and see if you have problems when you install Kaldi.
-```
 
 
 Software packages installed by Kaldi
 ---
 
-OpenFst: we compile against this and use it heavily.
-IRSTLM: this a language modeling toolkit. Some of the example scripts require it but it is not tightly integrated with Kaldi; we can convert any Arpa format language model to an FST.
+ - OpenFst: we compile against this and use it heavily.
+ - IRSTLM: this a language modeling toolkit. Some of the example scripts require it but it is not tightly integrated with Kaldi; we can convert any Arpa format language model to an FST.
 The IRSTLM build process requires automake, aclocal, and libtoolize (the corresponding packages are automake and libtool).
 Note: some of the example scripts now use SRILM; we make it easy to install that, although you still have to register online to download it.
-SRILM: some of the example scripts use this. It's generally a better and more complete language modeling toolkit than IRSTLM; the only drawback is the license, which is not free for commercial use. You have to enter your name on the download page to download it, so the installation script requires some human interaction.
-sph2pipe: this is for converting sph format files into other formats such as wav. It's needed for the example scripts that use LDC data.
-sclite: this is for scoring and is not necessary as we have our own, simple scoring program (compute-wer.cc).
+ - SRILM: some of the example scripts use this. It's generally a better and more complete language modeling toolkit than IRSTLM; the only drawback is the license, which is not free for commercial use. You have to enter your name on the download page to download it, so the installation script requires some human interaction.
+ - sph2pipe: this is for converting sph format files into other formats such as wav. It's needed for the example scripts that use LDC data.
+ - sclite: this is for scoring and is not necessary as we have our own, simple scoring program (compute-wer.cc).
 ATLAS, the linear algebra library. This is only needed for the headers; in typical setups we expect that ATLAS will be on your system. However, if it not already on your system you can compile ATLAS as long as your machine does not have CPU throttling enabled.
-CLAPACK, the linear algebra library (we download the headers). This is useful only on systems where you don't have ATLAS and are instead compiling with CLAPACK.
-OpenBLAS: this is an alernative to ATLAS or CLAPACK. The scripts don't use it by default but we provide installation scripts so you can install it if you want to compare it against ATLAS (it's more actively maintained than ATLAS).
+ - CLAPACK, the linear algebra library (we download the headers). This is useful only on systems where you don't have ATLAS and are instead compiling with CLAPACK.
+ - OpenBLAS: this is an alernative to ATLAS or CLAPACK. The scripts don't use it by default but we provide installation scripts so you can install it if you want to compare it against ATLAS (it's more actively maintained than ATLAS).
 
 
 ```
