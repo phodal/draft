@@ -1,10 +1,43 @@
 
-> 大多数情况下，对于多数程序员而言，我们只需要对相关领域的算法（无论是机器学习、深度学习）有一个大概的认识，**能读懂原理**。除非自己去造轮子，要不只是在使用 API 而已。
-
  - 统计学
  - 基于内容（Item）：内容之间的相似度
  - 协同过滤（User）：用户之间的相似度
 
+
+基于统计学推荐
+---
+
+ - 博客的访问量
+ - 用户的点评数据
+
+
+基于 IMDB 算法重排
+---
+
+
+https://www.biaodianfu.com/imdb-rank.html
+
+贝叶斯统计的算法得出的加权分(Weighted Rank-WR)，公式如下：
+
+ WR， 加权得分（weighted rating）。
+ R，该电影的用户投票的平均得分（Rating）。
+ v，该电影的投票人数（votes）。
+ m，排名前 250 名的电影的最低投票数（现在为 3000）。
+ C， 所有电影的平均得分（现在为6.9）。
+ 
+```
+from math import sqrt
+
+def confidence(ups, downs):
+    n = ups + downs
+
+    if n == 0:
+        return 0
+
+    z = 1.0 #1.44 = 85%, 1.96 = 95%
+    phat = float(ups) / n
+    return ((phat + z*z/(2*n) - z * sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n))
+```
 
 
 基于文章标签过滤
@@ -50,22 +83,8 @@ if first_keyword:
 ```                
 
 https://stackoverflow.com/questions/10029588/python-implementation-of-the-wilson-score-interval
-```
-from math import sqrt
 
-def confidence(ups, downs):
-    n = ups + downs
-
-    if n == 0:
-        return 0
-
-    z = 1.0 #1.44 = 85%, 1.96 = 95%
-    phat = float(ups) / n
-    return ((phat + z*z/(2*n) - z * sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n))
-```
-
-
-权重分析
+添加基于 Google 搜索的标签权重
 ---
 
 单一的关键词，只对于网站本身是有价值的，对于用户来说，则不是如此。
@@ -82,6 +101,13 @@ raspberry pi alexa gpio | 2 | 4 | 50% | 10
 nodemcu homekit | 2 | 3 | 66.67% | 13
 arduino homekit | 1 | 3 | 33.33% | 9.7
 
+
+### 相关性搜索
+
+用户搜索 Raspberry Pi，那么它可能还会结合 Arduino ??
+
+### 标签权重排
+
 这也就是上面算法中的问题，假如我们的文章中，出现一系列的 home assistant、raspberry pi 相关的文章，那么它对于网站来说，表明它是没有价值的。
 
 并且如果同一系列的文章太多，如网上各类的 Vue 高仿站点，那么用户可能已经掌握了，或者没有价值。因此，它并不能在搜索结果上体现，
@@ -96,30 +122,6 @@ arduino homekit | 1 | 3 | 33.33% | 9.7
 
  - 权重
  - 加权计算法
-
-相关性搜索
----
-
-用户搜索 Raspberry Pi，那么它可能还会结合 Arduino ??
-
-基于统计学推荐
----
-
- - 博客的访问量
- - 用户的点评数据
-
-https://www.biaodianfu.com/imdb-rank.html
-
-贝叶斯统计的算法得出的加权分(Weighted Rank-WR)，公式如下：
-
- WR， 加权得分（weighted rating）。
- R，该电影的用户投票的平均得分（Rating）。
- v，该电影的投票人数（votes）。
- m，排名前 250 名的电影的最低投票数（现在为 3000）。
- C， 所有电影的平均得分（现在为6.9）。
-
-协同过滤
----
 
 
 基于内容的推荐（Content-based Recommendations）
@@ -170,7 +172,6 @@ User Filtering: https://github.com/fcurella/django-recommends
 
 **最近邻方法（k-Nearest Neighbor，简称kNN）**
 
-
 **Rocchio算法**
 
 **决策树算法（Decision Tree，简称DT）**
@@ -184,12 +185,12 @@ User Filtering: https://github.com/fcurella/django-recommends
 
 http://blog.untrod.com/2016/06/simple-similar-products-recommendation-engine-in-python.html
 
+
 协同过滤
 ---
 
 
-技术实现原型
----
+### 技术实现原型
 
  - hitcounts
  - rating
@@ -199,6 +200,11 @@ django + celery + redis 调度/定期/afterpost ?
 
 ajax 生成
 
+
+小结
+---
+
+> 大多数情况下，对于我而言，又或者大多数程序员而言，我们只需要了解相关领域的算法（无论是机器学习、深度学习），有一个总体的认识：了解有哪些相似的算法、以及每个算法的用途、**能读懂原理**。除非自己去造轮子，要不仍然只是使用 API 而已。即便你熟悉某一个算法的原理，只要是不能深入理解，在未来也中会是使用 API。
 
 参考内容：
 
