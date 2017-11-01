@@ -41,6 +41,8 @@ Serverless 架构
 
 快速验证一个想法
 
+Dropbox 创业历史的示例。
+
 AWS 提供一系列的工具：
 
  - Cognito 用于用户授权
