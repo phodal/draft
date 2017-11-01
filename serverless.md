@@ -37,13 +37,24 @@ Serverless 架构
 
 定时爬虫机器人
 
+### 精益创业
+
+快速验证一个想法
+
+AWS 提供一系列的工具：
+
+ - Cognito 用于用户授权
+ - Dynamo 存储数据
+ - Lambda 计算
+ - API Gateway 进行 API
+ - blabla
+
 与微服务的关系
 —--
 
 微服务并不能替换大量的单体应用
 
 相似的，它们是相辅相成的。
-
 
 Serverless 框架 
 ---
